@@ -1,0 +1,112 @@
+# Version Control
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-*
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Docker Files (don't need these in the image)
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
+# Secrets and Credentials
+.env
+.env.*
+secrets/
+*.key
+*.pem
+
+# Build Artifacts
+dist/
+build/
+
+# Node (if present)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+package-lock.json
+yarn.lock
+
+# Python (if present)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+.venv
+
+# Test Files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Database Files
+grafana-data/
+grafana.db
+*.db
+*.sqlite
+
+# Backup Files
+dashboard_exports/
+grafana/dashboards_backup/
+
+# License and Legal (we want these in the image, so commenting out)
+# LICENSE
+# NOTICE
+
+# Scripts we don't need in runtime
+scripts/
+*.sh
+!dashboards.sh
+
+# Renovate
+renovate.json
+
+# Claude Code
+.claude/
+.commitsage
