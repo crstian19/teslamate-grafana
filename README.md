@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![TeslaMate Logo](logo.svg)
+<img src="logo.svg" alt="TeslaMate Logo" width="200">
 
 **Pre-configured Grafana Docker image for TeslaMate with 49+ dashboards**
 
