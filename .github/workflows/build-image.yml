@@ -67,13 +67,7 @@ jobs:
           tags: |
             # Tag with 'latest' for main branch
             type=raw,value=latest,enable={{is_default_branch}}
-            # Tag with git SHA
-            type=sha,prefix={{branch}}-
-            # Tag with branch name
-            type=ref,event=branch
-            # Tag with PR number
-            type=ref,event=pr
-            # Tag with Grafana version (just the version number)
+            # Tag with Grafana version (only for main branch)
             type=raw,value=${{ steps.grafana_version.outputs.version }},enable={{is_default_branch}}
           labels: |
             org.opencontainers.image.title=TeslaMate Grafana
