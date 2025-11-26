@@ -46,19 +46,6 @@ The official TeslaMate repository often ships with outdated Grafana versions. Th
 docker pull ghcr.io/crstian19/teslamate-grafana:latest
 ```
 
-### Run with Docker
-
-```bash
-docker run -d \
-  --name teslamate-grafana \
-  -p 3000:3000 \
-  -e DATABASE_HOST=your-postgres-host \
-  -e DATABASE_USER=teslamate \
-  -e DATABASE_PASS=your-password \
-  -e DATABASE_NAME=teslamate \
-  ghcr.io/crstian19/teslamate-grafana:latest
-```
-
 ### Access Grafana
 
 Open http://localhost:3000 in your browser.
@@ -208,73 +195,6 @@ This image comes with optimized Grafana settings:
 - 🔕 Unified alerting disabled
 - 📈 Analytics reporting disabled
 
----
-
-## 🐳 Docker Compose Example
-
-Create a `docker-compose.yml` file:
-
-```yaml
-version: '3.8'
-
-services:
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: teslamate
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: teslamate
-    volumes:
-      - teslamate-db:/var/lib/postgresql/data
-    restart: unless-stopped
-
-  teslamate:
-    image: teslamate/teslamate:latest
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_HOST: postgres
-      DATABASE_USER: teslamate
-      DATABASE_PASS: secret
-      DATABASE_NAME: teslamate
-      MQTT_HOST: mosquitto
-    ports:
-      - "4000:4000"
-    restart: unless-stopped
-
-  grafana:
-    image: ghcr.io/crstian19/teslamate-grafana:latest
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_HOST: postgres
-      DATABASE_USER: teslamate
-      DATABASE_PASS: secret
-      DATABASE_NAME: teslamate
-    ports:
-      - "3000:3000"
-    restart: unless-stopped
-
-  mosquitto:
-    image: eclipse-mosquitto:2
-    volumes:
-      - mosquitto-conf:/mosquitto/config
-      - mosquitto-data:/mosquitto/data
-    ports:
-      - "1883:1883"
-    restart: unless-stopped
-
-volumes:
-  teslamate-db:
-  mosquitto-conf:
-  mosquitto-data:
-```
-
-Start the stack:
-
-```bash
-docker-compose up -d
-```
 
 ---
 
@@ -299,31 +219,6 @@ A [GitHub Action](.github/workflows/sync-dashboards.yml) runs every **Monday at 
 
 ---
 
-## 🏗️ Building Locally
-
-### Clone the repository
-
-```bash
-git clone https://github.com/crstian19/teslamate-grafana.git
-cd teslamate-grafana
-```
-
-### Build the image
-
-```bash
-docker build -t teslamate-grafana:local .
-```
-
-### Build for multiple architectures
-
-```bash
-docker buildx build \
-  --platform linux/amd64,linux/arm64,linux/arm/v7 \
-  -t teslamate-grafana:local \
-  --push .
-```
-
----
 
 ## 🛠️ Dashboard Management
 
